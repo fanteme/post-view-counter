@@ -10,10 +10,21 @@ export default class CounterController {
         this.counterRepository = getManager().getRepository(CounterEntity)
     }
 
-    async add(e: CounterEntity) {
-        await this.counterRepository.updateById(e.id, {
-            pv: e.pv + 1
-        })
+    async view(ctx: Context) {
+        if (await this.checkSlugExist(ctx)) {
+            const entity = await this.counterRepository.findOne({
+                select: ['id', 'slug', 'pv'],
+                where: {
+                    slug: ctx.params.slug
+                }
+            })
+            await this.counterRepository.updateById(entity.id, {
+                pv: entity.pv + 1
+            })
+            return entity
+        } else {
+            return await this.insertRecord(ctx)
+        }
     }
 
     async get(ctx: Context) {
@@ -24,7 +35,6 @@ export default class CounterController {
                     slug: ctx.params.slug
                 }
             })
-            await this.add(entity)
             return entity
         } else {
             return await this.insertRecord(ctx)

@@ -24,8 +24,13 @@ export default class Application {
             console.log('TypeORM connection error: ', error)
         }
         this.controller = new CounterController()
+        //get pv no changed
         this.router.get('/post-view-counter/:slug', async (ctx: Context, next) => {
             ctx.body = await this.controller.get(ctx)
+        })
+        //post pv will +1
+        this.router.post('/post-view-counter/:slug', async (ctx: Context, next) => {
+            ctx.body = await this.controller.view(ctx)
         })
         this.koa.use(bodyParser())
         this.koa.use(cors())
