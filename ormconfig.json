@@ -1,0 +1,12 @@
+{
+    "type": "sqlite",
+    "host": "localhost",
+    "port": 1943,
+    "username": "test",
+    "password": "test",
+    "database": "post-view-counter.db",
+    "synchronize": true,
+    "entities": [
+        "src/CounterEntity.ts"
+    ]
+  }

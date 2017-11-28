@@ -1,0 +1,30 @@
+{
+  "name": "post-view-counter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Lerte Smith<lerte@qq.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.6.1"
+  },
+  "dependencies": {
+    "@types/koa": "^2.0.41",
+    "@types/koa-bodyparser": "^3.0.26",
+    "@types/koa-router": "^7.0.26",
+    "@types/node": "^8.0.53",
+    "body-parser": "^1.18.2",
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.3.0",
+    "reflect-metadata": "^0.1.10",
+    "sqlite3": "^3.1.13",
+    "typeorm": "^0.1.6"
+  }
+}
