@@ -1,6 +1,7 @@
 import 'reflect-metadata'
 import {createConnection, Connection} from 'typeorm'
 import * as Koa from 'koa'
+import * as cors from 'koa2-cors'
 import {Context} from 'koa'
 import * as Router from 'koa-router'
 import * as bodyParser from 'koa-bodyparser'
@@ -27,6 +28,7 @@ export default class Application {
             ctx.body = await this.controller.get(ctx)
         })
         this.koa.use(bodyParser())
+        this.koa.use(cors())
         this.koa.use(this.router.routes())
         this.koa.use(this.router.allowedMethods())
         this.koa.listen(3600)
