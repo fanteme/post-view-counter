@@ -6,6 +6,7 @@ import {Context} from 'koa'
 import * as Router from 'koa-router'
 import * as bodyParser from 'koa-bodyparser'
 import CounterController from './CounterController'
+import CounterEntity from './CounterEntity'
 
 export default class Application {
     koa: Koa
@@ -19,7 +20,14 @@ export default class Application {
     }
     async start(){
         try {
-            this.connection = await createConnection()
+            this.connection = await createConnection({
+                type: 'sqlite',
+                database: "post-view-counter.db",
+                synchronize: true,
+                entities: [
+                    CounterEntity
+                ]
+            })
         } catch (error) {
             console.log('TypeORM connection error: ', error)
         }
