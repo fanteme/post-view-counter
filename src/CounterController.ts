@@ -53,7 +53,7 @@ export default class CounterController {
     protected async insertRecord(ctx: Context) {
         const entity = await this.counterRepository.create({
             slug: ctx.params.slug,
-            pv: 1
+            pv: 0
         })
         await this.counterRepository.save(entity)
         return entity
